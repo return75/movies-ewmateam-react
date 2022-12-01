@@ -1,3 +1,5 @@
+@import "bootstrap-contianer.scss";
+
 .App {
   text-align: center;
 }
@@ -51,4 +53,7 @@
 .movie-card {
   margin: 8px;
   width: 200px;
+}
+.bg-gradient {
+  background: linear-gradient(187deg,#0b215d,#0c1429);
 }
