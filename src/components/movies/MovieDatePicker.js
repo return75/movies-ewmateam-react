@@ -1,32 +1,60 @@
-// import TextField from '@mui/material/TextField';
-// import Box from '@mui/material/Box';
-// import React, {useState} from "react";
-// import { LocalizationProvider } from '@mui/x-date-pickers-pro';
-// import { AdapterDayjs } from '@mui/x-date-pickers-pro/AdapterDayjs';
-// import { DateRangePicker, DateRange } from '@mui/x-date-pickers-pro/DateRangePicker';
-//
-// const MovieDatePicker = (props) => {
-//     const [value, setValue] = useState(null);
-//
-//     return (
-//         <LocalizationProvider
-//             dateAdapter={AdapterDayjs}
-//             localeText={{ start: 'start date', end: 'end date' }}
-//         >
-//             <DateRangePicker
-//                 value={value}
-//                 onChange={(newValue) => {
-//                     setValue(newValue);
-//                 }}
-//                 renderInput={(startProps, endProps) => (
-//                     <React.Fragment>
-//                         <TextField {...startProps} />
-//                         <Box sx={{ mx: 2 }}> to </Box>
-//                         <TextField {...endProps} />
-//                     </React.Fragment>
-//                 )}
-//             />
-//         </LocalizationProvider>
-//     )
-// }
-// export default MovieDatePicker
+import * as React from 'react';
+import {useState} from "react";
+import TextField from '@mui/material/TextField';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import Typography from "@mui/material/Typography";
+import Box from '@mui/material/Box'
+
+export default function BasicDatePicker(props) {
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
+    const color = 'white'
+
+    return (
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+           <Box sx={{display: 'flex', pt: 4, justifyContent: 'center', alignItems: 'center'}}>
+               <DatePicker
+                   label="start date"
+                   value={startDate}
+                   onChange={(newValue, prevValue) => {
+                       setStartDate(newValue);
+                       props.filterMovies(newValue, endDate)
+                   }}
+
+                   renderInput={(params) => <TextField
+                       sx={{
+                           svg: { color },
+                           input: { color, width: 150 },
+                           label: { color },
+                       }}
+                       {...params}
+                   />
+                   }
+               />
+               <Typography variant="body2" sx={{mx: 4, color: 'white'}}>
+                   to
+               </Typography>
+               <DatePicker
+                   label="end date"
+                   value={endDate}
+                   onChange={(newValue) => {
+                       setEndDate(newValue);
+                       props.filterMovies(startDate, newValue)
+                   }}
+                   renderInput={(params) => <TextField
+                       sx={{
+                           svg: { color },
+                           input: { color, width: 150 },
+                           label: { color },
+                           borderColor: 'white'
+                       }}
+                       {...params}
+                   />
+                   }
+               />
+           </Box>
+        </LocalizationProvider>
+    );
+}

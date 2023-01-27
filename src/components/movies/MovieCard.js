@@ -17,7 +17,7 @@ const MovieCard = (props) => {
                     {props.title}
                 </Typography>
                 <Typography variant="body2" gutterBottom>
-                    {props.date.replaceAll('-', ' / ')}
+                    {props.date.replaceAll('-', '/ ')}
                 </Typography>
             </Box>
         </Card>
