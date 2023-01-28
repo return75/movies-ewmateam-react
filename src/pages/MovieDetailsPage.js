@@ -7,15 +7,17 @@ import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import {hover} from "@testing-library/user-event/dist/hover";
 
 
-// const BootstrapButton = styled(Button)({
-//     borderRadius: '1rem',
-//     fontSize: 16,
-//     padding: '6px 12px',
-//     border: '1px solid #fff',
-//     borderColor: '#ffffff',
-// });
+const BackButton = styled(Button)({
+    borderRadius: '2rem',
+    fontWeight: 'lighter',
+    fontSize: 20,
+    padding: '8px 16px',
+    border: '1px solid #fff',
+    color: '#fff',
+});
 
 export default function MovieDetailsPage() {
     const params = useParams()
@@ -31,19 +33,29 @@ export default function MovieDetailsPage() {
     }, [])
 
     const theme = createTheme();
+    theme.typography.h4 = {
+        fontWeight: 'lighter',
+        fontSize: '2.5rem',
+    }
+    theme.typography.h6 = {
+        fontWeight: 'lighter',
+        fontSize: '1rem',
+    }
 
-    theme.typography.h3 = {
-        fontSize: '3rem',
-        fontWeight: 'lighter'
-    };
+    const goBack = () => {
+        window.history.back()
+    }
 
     return (
         <div className="App bg-gradient h-full">
             <div className={'container text-white'} >
-                <Stack spacing={8} direction="row" sx={{pt: 8}} style={{alignItems: 'center'}}>
-                    <Button variant="outlined">Back</Button>
+                <Stack spacing={6} direction="row" sx={{pt: 8}} style={{alignItems: 'center'}}>
+                    <BackButton variant="outlined" onClick={goBack}>Back</BackButton>
                     <ThemeProvider theme={theme}>
-                        <Typography variant="h3" sx={{ ml: 8}} style={{textAlign: 'left'}}>{title}</Typography>
+                        <Stack style={{textAlign: 'left'}} sx={{ ml: 8}}>
+                            <Typography variant="h4">{title}</Typography>
+                            <Typography variant="h6">{movieDetails.tagline}</Typography>
+                        </Stack>
                     </ThemeProvider>
                 </Stack>
                 <Grid container spacing={2} sx={{pt: 8}}>
