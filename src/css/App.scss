@@ -57,3 +57,25 @@
 .bg-gradient {
   background: linear-gradient(187deg,#0b215d,#0c1429);
 }
+
+.MuiPagination-root {
+  button {
+    color: #ffffff !important;
+  }
+}
+.text-white {
+  color: white;
+}
+.h-full {
+  height: 100%;
+}
+pre {
+  white-space: pre-wrap;       /* Since CSS 2.1 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+img {
+  max-width: 100%;
+}
